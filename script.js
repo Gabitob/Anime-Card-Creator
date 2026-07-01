@@ -1,4 +1,3 @@
-// DOM Elements
 const uploadArea = document.getElementById('uploadArea');
 const imageInput = document.getElementById('imageInput');
 const cardImage = document.getElementById('cardImage');
@@ -20,7 +19,6 @@ const intValue = document.getElementById('intValue');
 const magValue = document.getElementById('magValue');
 const downloadBtn = document.getElementById('downloadBtn');
 
-// Card Elements
 const animeCard = document.getElementById('animeCard');
 const cardCharacterName = document.getElementById('cardCharacterName');
 const cardAnimeTitle = document.getElementById('cardAnimeTitle');
@@ -34,7 +32,6 @@ const strBar = document.getElementById('strBar');
 const velBar = document.getElementById('velBar');
 const intBar = document.getElementById('intBar');
 
-// Image Upload Handling
 uploadArea.addEventListener('click', () => {
     imageInput.click();
 });
@@ -79,7 +76,6 @@ function handleImageUpload(file) {
     reader.readAsDataURL(file);
 }
 
-// Form Input Handling
 characterName.addEventListener('input', (e) => {
     cardCharacterName.textContent = e.target.value || 'Nome do Personagem';
 });
@@ -96,12 +92,10 @@ characterDescription.addEventListener('input', (e) => {
     cardCharacterDescription.textContent = e.target.value || 'Uma breve descrição do personagem aparecerá aqui...';
 });
 
-// Theme Handling
 cardTheme.addEventListener('change', (e) => {
     animeCard.setAttribute('data-theme', e.target.value);
 });
 
-// Rarity Handling
 rarity.addEventListener('change', (e) => {
     const rarityMap = {
         'common': 'Comum',
@@ -114,7 +108,6 @@ rarity.addEventListener('change', (e) => {
     animeCard.setAttribute('data-rarity', e.target.value);
 });
 
-// Zodiac Sign Handling
 zodiacSign.addEventListener('change', (e) => {
     const zodiacSymbols = {
         'aries': '♈️',
@@ -134,7 +127,6 @@ zodiacSign.addEventListener('change', (e) => {
     cardZodiac.textContent = zodiacSymbols[e.target.value] || '';
 });
 
-// Stats Handling
 strInput.addEventListener('input', (e) => {
     const value = e.target.value;
     strValue.textContent = value;
@@ -170,12 +162,8 @@ function updateTotalPower() {
     cardPowerNumber.textContent = total;
 }
 
-// Download Functionality
 downloadBtn.addEventListener('click', async () => {
     try {
-        // Use html2canvas library to capture the card
-        const { default: html2canvas } = await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm');
-        
         const canvas = await html2canvas(animeCard, {
             backgroundColor: null,
             scale: 2,
@@ -193,7 +181,6 @@ downloadBtn.addEventListener('click', async () => {
     }
 });
 
-// Initialize stat bars with input values
 function initializeStats() {
     strBar.style.width = `${strInput.value}%`;
     velBar.style.width = `${velInput.value}%`;
@@ -202,5 +189,4 @@ function initializeStats() {
     updateTotalPower();
 }
 
-// Initialize on page load
 initializeStats();
