@@ -9,6 +9,7 @@ const characterPower = document.getElementById('characterPower');
 const characterDescription = document.getElementById('characterDescription');
 const cardTheme = document.getElementById('cardTheme');
 const rarity = document.getElementById('rarity');
+const zodiacSign = document.getElementById('zodiacSign');
 const strInput = document.getElementById('strInput');
 const velInput = document.getElementById('velInput');
 const intInput = document.getElementById('intInput');
@@ -26,6 +27,7 @@ const cardAnimeTitle = document.getElementById('cardAnimeTitle');
 const cardCharacterPower = document.getElementById('cardCharacterPower');
 const cardCharacterDescription = document.getElementById('cardCharacterDescription');
 const cardRarity = document.getElementById('cardRarity');
+const cardZodiac = document.getElementById('cardZodiac');
 const cardPowerNumber = document.getElementById('cardPowerNumber');
 const cardMagicNumber = document.getElementById('cardMagicNumber');
 const strBar = document.getElementById('strBar');
@@ -110,6 +112,26 @@ rarity.addEventListener('change', (e) => {
     
     cardRarity.textContent = rarityMap[e.target.value];
     animeCard.setAttribute('data-rarity', e.target.value);
+});
+
+// Zodiac Sign Handling
+zodiacSign.addEventListener('change', (e) => {
+    const zodiacSymbols = {
+        'aries': '♈️',
+        'taurus': '♉️',
+        'gemini': '♊️',
+        'cancer': '♋️',
+        'leo': '♌️',
+        'virgo': '♍️',
+        'libra': '♎️',
+        'scorpio': '♏️',
+        'sagittarius': '♐️',
+        'capricorn': '♑️',
+        'aquarius': '♒️',
+        'pisces': '♓️'
+    };
+    
+    cardZodiac.textContent = zodiacSymbols[e.target.value] || '';
 });
 
 // Stats Handling

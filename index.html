@@ -67,6 +67,25 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="zodiacSign">Signo</label>
+                        <select id="zodiacSign">
+                            <option value="">Nenhum</option>
+                            <option value="aries">Áries</option>
+                            <option value="taurus">Touro</option>
+                            <option value="gemini">Gêmeos</option>
+                            <option value="cancer">Câncer</option>
+                            <option value="leo">Leão</option>
+                            <option value="virgo">Virgem</option>
+                            <option value="libra">Libra</option>
+                            <option value="scorpio">Escorpião</option>
+                            <option value="sagittarius">Sagitário</option>
+                            <option value="capricorn">Capricórnio</option>
+                            <option value="aquarius">Aquário</option>
+                            <option value="pisces">Peixes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label>Stats do Personagem</label>
                         <div class="stats-inputs">
                             <div class="stat-input">
@@ -101,7 +120,10 @@
                 <div class="card-container" id="cardContainer">
                     <div class="anime-card" id="animeCard">
                         <div class="card-header">
-                            <div class="card-rarity" id="cardRarity">Comum</div>
+                            <div class="card-header-left">
+                                <div class="card-rarity" id="cardRarity">Comum</div>
+                                <div class="card-zodiac" id="cardZodiac"></div>
+                            </div>
                             <div class="card-stats-header">
                                 <div class="card-power">
                                     <span class="power-label">PODER</span>
