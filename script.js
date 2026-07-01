@@ -124,7 +124,14 @@ zodiacSign.addEventListener('change', (e) => {
         'pisces': '♓️'
     };
     
-    cardZodiac.textContent = zodiacSymbols[e.target.value] || '';
+    const symbol = zodiacSymbols[e.target.value] || 'N/A';
+    cardZodiac.textContent = symbol;
+    
+    if (symbol === 'N/A') {
+        cardZodiac.classList.add('na-text');
+    } else {
+        cardZodiac.classList.remove('na-text');
+    }
 });
 
 strInput.addEventListener('input', (e) => {
@@ -187,6 +194,8 @@ function initializeStats() {
     intBar.style.width = `${intInput.value}%`;
     cardMagicNumber.textContent = magInput.value;
     updateTotalPower();
+    cardZodiac.textContent = 'N/A';
+    cardZodiac.classList.add('na-text');
 }
 
 initializeStats();
