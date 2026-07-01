@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Card Creator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">✨ Anime Card Creator</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="editor-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <p class="upload-text">Arraste sua foto aqui ou clique para selecionar</p>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="characterName">Nome do Personagem</label>
+                        <input type="text" id="characterName" placeholder="Ex: Naruto Uzumaki">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="animeTitle">Nome do Anime</label>
+                        <input type="text" id="animeTitle" placeholder="Ex: Naruto Shippuden">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="characterPower">Poder do Personagem</label>
+                        <input type="text" id="characterPower" placeholder="Ex: Rasengan, Kamehameha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="characterDescription">Descrição</label>
+                        <textarea id="characterDescription" rows="3" placeholder="Uma breve descrição do personagem..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardTheme">Tema do Card</label>
+                        <select id="cardTheme">
+                            <option value="default">Padrão</option>
+                            <option value="fire">Fogo</option>
+                            <option value="water">Água</option>
+                            <option value="lightning">Relâmpago</option>
+                            <option value="dark">Escuro</option>
+                            <option value="nature">Natureza</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rarity">Raridade</label>
+                        <select id="rarity">
+                            <option value="common">Comum</option>
+                            <option value="rare">Raro</option>
+                            <option value="epic">Épico</option>
+                            <option value="legendary">Lendário</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Stats do Personagem</label>
+                        <div class="stats-inputs">
+                            <div class="stat-input">
+                                <label for="strInput">STR</label>
+                                <input type="range" id="strInput" min="0" max="100" value="50">
+                                <span class="stat-value" id="strValue">50</span>
+                            </div>
+                            <div class="stat-input">
+                                <label for="velInput">VEL</label>
+                                <input type="range" id="velInput" min="0" max="100" value="50">
+                                <span class="stat-value" id="velValue">50</span>
+                            </div>
+                            <div class="stat-input">
+                                <label for="intInput">INT</label>
+                                <input type="range" id="intInput" min="0" max="100" value="50">
+                                <span class="stat-value" id="intValue">50</span>
+                            </div>
+                            <div class="stat-input">
+                                <label for="magInput">MAG</label>
+                                <input type="range" id="magInput" min="0" max="100" value="50">
+                                <span class="stat-value" id="magValue">50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-download" id="downloadBtn">📥 Baixar Card</button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2 class="preview-title">Preview</h2>
+                <div class="card-container" id="cardContainer">
+                    <div class="anime-card" id="animeCard">
+                        <div class="card-header">
+                            <div class="card-rarity" id="cardRarity">Comum</div>
+                            <div class="card-stats-header">
+                                <div class="card-power">
+                                    <span class="power-label">PODER</span>
+                                    <span class="power-number" id="cardPowerNumber">50</span>
+                                </div>
+                                <div class="card-magic">
+                                    <span class="magic-label">MAG</span>
+                                    <span class="magic-number" id="cardMagicNumber">50</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-image">
+                            <div class="image-placeholder" id="imagePlaceholder">
+                                <span class="placeholder-icon">🖼️</span>
+                                <span class="placeholder-text">Sua foto aparecerá aqui</span>
+                            </div>
+                            <img id="cardImage" src="" alt="" style="display: none;">
+                        </div>
+
+                        <div class="card-body">
+                            <h3 class="character-name" id="cardCharacterName">Nome do Personagem</h3>
+                            <p class="anime-title" id="cardAnimeTitle">Nome do Anime</p>
+                            <div class="character-power" id="cardCharacterPower">Poder</div>
+                            <p class="character-description" id="cardCharacterDescription">Uma breve descrição do personagem aparecerá aqui...</p>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="stats">
+                                <div class="stat">
+                                    <span class="stat-label">STR</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" id="strBar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">VEL</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" id="velBar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">INT</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" id="intBar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attributes-info">
+                    <h3 class="attributes-title">📊 Legenda de Atributos</h3>
+                    <table class="attributes-table">
+                        <thead>
+                            <tr>
+                                <th>Atributo</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="attr-name">STR</td>
+                                <td class="attr-desc">Força Física</td>
+                            </tr>
+                            <tr>
+                                <td class="attr-name">VEL</td>
+                                <td class="attr-desc">Velocidade</td>
+                            </tr>
+                            <tr>
+                                <td class="attr-name">INT</td>
+                                <td class="attr-desc">Inteligência</td>
+                            </tr>
+                            <tr>
+                                <td class="attr-name">MAG</td>
+                                <td class="attr-desc">Magia</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
