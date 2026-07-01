@@ -101,7 +101,8 @@ rarity.addEventListener('change', (e) => {
         'common': 'Comum',
         'rare': 'Raro',
         'epic': 'Épico',
-        'legendary': 'Lendário'
+        'legendary': 'Lendário',
+        'mythic': 'Mítica'
     };
     
     cardRarity.textContent = rarityMap[e.target.value];
