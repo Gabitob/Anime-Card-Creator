@@ -1018,6 +1018,14 @@ body {
 
     transition: transform 0.05s ease-out;
 
+    transform-origin: center center;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
 }
 
 
