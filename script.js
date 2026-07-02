@@ -163,82 +163,86 @@ magInput.addEventListener('input', (e) => {
     cardMagicNumber.textContent = value;
 });
 
-// Image drag functionality
+// Image drag and zoom functionality
 let isDragging = false;
 let isPinching = false;
 let startX, startY;
-let imagePosX = 0, imagePosY = 0;
 let currentImageX = 0, currentImageY = 0;
 let currentScale = 1;
 let initialPinchDistance = 0;
 let initialScale = 1;
 
-cardImage.addEventListener('mousedown', startDrag);
-cardImage.addEventListener('touchstart', handleTouchStart, { passive: false });
-
-document.addEventListener('mousemove', drag);
-document.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-document.addEventListener('mouseup', endDrag);
-document.addEventListener('touchend', endDrag);
-
-function startDrag(e) {
+// Mouse events for desktop
+cardImage.addEventListener('mousedown', (e) => {
     e.preventDefault();
     isDragging = true;
-    
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-    
-    startX = clientX - currentImageX;
-    startY = clientY - currentImageY;
-    
+    startX = e.clientX - currentImageX;
+    startY = e.clientY - currentImageY;
     cardImage.style.cursor = 'grabbing';
-}
+});
 
-function handleTouchStart(e) {
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    currentImageX = e.clientX - startX;
+    currentImageY = e.clientY - startY;
+    updateTransform();
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    cardImage.style.cursor = 'grab';
+});
+
+// Touch events for mobile
+cardImage.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
-        // Single touch - drag
-        startDrag(e);
+        // Single touch - prepare for drag
+        isDragging = true;
+        isPinching = false;
+        startX = e.touches[0].clientX - currentImageX;
+        startY = e.touches[0].clientY - currentImageY;
     } else if (e.touches.length === 2) {
-        // Two touches - pinch zoom
+        // Two touches - prepare for pinch zoom
         e.preventDefault();
-        isPinching = true;
         isDragging = false;
+        isPinching = true;
         initialPinchDistance = getPinchDistance(e.touches);
         initialScale = currentScale;
     }
-}
+}, { passive: false });
 
-function handleTouchMove(e) {
+document.addEventListener('touchmove', (e) => {
     if (isDragging && e.touches.length === 1) {
-        drag(e);
+        // Drag with single finger
+        e.preventDefault();
+        currentImageX = e.touches[0].clientX - startX;
+        currentImageY = e.touches[0].clientY - startY;
+        updateTransform();
     } else if (isPinching && e.touches.length === 2) {
+        // Pinch zoom with two fingers
         e.preventDefault();
         const currentPinchDistance = getPinchDistance(e.touches);
         const scaleChange = currentPinchDistance / initialPinchDistance;
         currentScale = Math.max(0.5, Math.min(3, initialScale * scaleChange));
         updateTransform();
     }
-}
+}, { passive: false });
 
-function drag(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-    
-    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-    
-    currentImageX = clientX - startX;
-    currentImageY = clientY - startY;
-    
-    updateTransform();
-}
-
-function endDrag() {
-    isDragging = false;
-    isPinching = false;
+document.addEventListener('touchend', (e) => {
+    // Reset states when fingers are lifted
+    if (e.touches.length === 0) {
+        isDragging = false;
+        isPinching = false;
+    } else if (e.touches.length === 1 && isPinching) {
+        // Transition from pinch to drag when one finger is lifted
+        isPinching = false;
+        isDragging = true;
+        startX = e.touches[0].clientX - currentImageX;
+        startY = e.touches[0].clientY - currentImageY;
+    }
     cardImage.style.cursor = 'grab';
-}
+});
 
 function getPinchDistance(touches) {
     return Math.hypot(
