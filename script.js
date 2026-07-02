@@ -72,6 +72,7 @@ function handleImageUpload(file) {
         cardImage.src = e.target.result;
         cardImage.style.display = 'block';
         imagePlaceholder.style.display = 'none';
+        resetImagePosition();
     };
     reader.readAsDataURL(file);
 }
@@ -160,6 +161,114 @@ magInput.addEventListener('input', (e) => {
     const value = e.target.value;
     magValue.textContent = value;
     cardMagicNumber.textContent = value;
+});
+
+// Image drag functionality
+let isDragging = false;
+let isPinching = false;
+let startX, startY;
+let imagePosX = 0, imagePosY = 0;
+let currentImageX = 0, currentImageY = 0;
+let currentScale = 1;
+let initialPinchDistance = 0;
+let initialScale = 1;
+
+cardImage.addEventListener('mousedown', startDrag);
+cardImage.addEventListener('touchstart', handleTouchStart, { passive: false });
+
+document.addEventListener('mousemove', drag);
+document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+document.addEventListener('mouseup', endDrag);
+document.addEventListener('touchend', endDrag);
+
+function startDrag(e) {
+    e.preventDefault();
+    isDragging = true;
+    
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    
+    startX = clientX - currentImageX;
+    startY = clientY - currentImageY;
+    
+    cardImage.style.cursor = 'grabbing';
+}
+
+function handleTouchStart(e) {
+    if (e.touches.length === 1) {
+        // Single touch - drag
+        startDrag(e);
+    } else if (e.touches.length === 2) {
+        // Two touches - pinch zoom
+        e.preventDefault();
+        isPinching = true;
+        isDragging = false;
+        initialPinchDistance = getPinchDistance(e.touches);
+        initialScale = currentScale;
+    }
+}
+
+function handleTouchMove(e) {
+    if (isDragging && e.touches.length === 1) {
+        drag(e);
+    } else if (isPinching && e.touches.length === 2) {
+        e.preventDefault();
+        const currentPinchDistance = getPinchDistance(e.touches);
+        const scaleChange = currentPinchDistance / initialPinchDistance;
+        currentScale = Math.max(0.5, Math.min(3, initialScale * scaleChange));
+        updateTransform();
+    }
+}
+
+function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+    
+    currentImageX = clientX - startX;
+    currentImageY = clientY - startY;
+    
+    updateTransform();
+}
+
+function endDrag() {
+    isDragging = false;
+    isPinching = false;
+    cardImage.style.cursor = 'grab';
+}
+
+function getPinchDistance(touches) {
+    return Math.hypot(
+        touches[0].clientX - touches[1].clientX,
+        touches[0].clientY - touches[1].clientY
+    );
+}
+
+function updateTransform() {
+    cardImage.style.transform = `translate(${currentImageX}px, ${currentImageY}px) scale(${currentScale})`;
+}
+
+function resetImagePosition() {
+    currentImageX = 0;
+    currentImageY = 0;
+    currentScale = 1;
+    updateTransform();
+}
+
+// Add cursor style on hover
+cardImage.addEventListener('mouseenter', () => {
+    if (cardImage.style.display !== 'none') {
+        cardImage.style.cursor = 'grab';
+    }
+});
+
+cardImage.addEventListener('mouseleave', () => {
+    if (!isDragging) {
+        cardImage.style.cursor = 'default';
+    }
 });
 
 function updateTotalPower() {
