@@ -1398,6 +1398,8 @@ body {
 
     border-color: #64748b;
 
+    background: rgba(100, 116, 139, 0.15);
+
 }
 
 
@@ -1405,6 +1407,8 @@ body {
 .anime-card[data-rarity="rare"] {
 
     border-color: #3b82f6;
+
+    background: rgba(59, 130, 246, 0.15);
 
     box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
 
@@ -1416,6 +1420,8 @@ body {
 
     border-color: #a855f7;
 
+    background: rgba(168, 85, 247, 0.15);
+
     box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.4);
 
 }
@@ -1425,6 +1431,8 @@ body {
 .anime-card[data-rarity="legendary"] {
 
     border-color: #f59e0b;
+
+    background: rgba(245, 158, 11, 0.15);
 
     box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.5);
 
@@ -1437,6 +1445,8 @@ body {
 .anime-card[data-rarity="mythic"] {
 
     border-color: #ef4444;
+
+    background: rgba(239, 68, 68, 0.15);
 
     box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.6);
 
