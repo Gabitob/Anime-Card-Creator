@@ -11,6 +11,7 @@
 <p align="center">
   Link para acesso: https://gabitob.github.io/Anime-Card-Creator/
 </p>
+
 ---
 
 ## 🚀 Sobre o Projeto
