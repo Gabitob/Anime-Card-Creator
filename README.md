@@ -8,6 +8,9 @@
   Uma aplicação web interativa para criar, personalizar e baixar cartas de personagens de anime personalizadas em tempo real.
 </p>
 
+<p align="center">
+  Link para acesso: https://gabitob.github.io/Anime-Card-Creator/
+</p>
 ---
 
 ## 🚀 Sobre o Projeto
