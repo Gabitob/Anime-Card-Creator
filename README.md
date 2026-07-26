@@ -1,7 +1,7 @@
 # 🃏 Anime Card Creator
 
 <p align="center">
-  <img src="https://cdn.discordapp.com/attachments/1520892831298879551/1528511483846197288/53ff9c76-affc-49b5-b01e-91394bef5d55.png?ex=6a5e90c0&is=6a5d3f40&hm=6506ea48f887a4796cc499d0f18b769482fba5050ee3846adcfd25e3272e45f4" alt="Demonstração do Anime Card Creator" width="700px">
+  <img src="https://media.discordapp.net/attachments/1520892831298879551/1528511483846197288/53ff9c76-affc-49b5-b01e-91394bef5d55.png?ex=6a672280&is=6a65d100&hm=f05e6b641d5f105614d566bf3b1b5109bf13ecf3e8e81edd7fd6b1125e29fd7d&=&format=webp&quality=lossless&width=1147&height=1006" alt="Demonstração do Anime Card Creator" width="700px">
 </p>
 
 <p align="center">
