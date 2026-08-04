@@ -50,6 +50,10 @@
 
     --theme-light: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
 
+    --theme-earth: linear-gradient(135deg, #92400e 0%, #78350f 100%);
+
+    --theme-metal: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+
 }
 
 
@@ -1436,6 +1440,58 @@ body {
     background: rgba(254, 243, 199, 0.2);
 
     color: #fcd34d;
+
+}
+
+
+
+.anime-card[data-theme="earth"] .card-header {
+
+    background: var(--theme-earth);
+
+}
+
+
+
+.anime-card[data-theme="earth"] .stat-fill {
+
+    background: linear-gradient(90deg, #92400e, #78350f);
+
+}
+
+
+
+.anime-card[data-theme="earth"] .character-power {
+
+    background: rgba(146, 64, 14, 0.2);
+
+    color: #92400e;
+
+}
+
+
+
+.anime-card[data-theme="metal"] .card-header {
+
+    background: var(--theme-metal);
+
+}
+
+
+
+.anime-card[data-theme="metal"] .stat-fill {
+
+    background: linear-gradient(90deg, #6b7280, #4b5563);
+
+}
+
+
+
+.anime-card[data-theme="metal"] .character-power {
+
+    background: rgba(107, 114, 128, 0.2);
+
+    color: #6b7280;
 
 }
 
