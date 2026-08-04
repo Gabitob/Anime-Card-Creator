@@ -1139,6 +1139,8 @@ body {
 
     display: inline-block;
 
+    width: fit-content;
+
     background: rgba(99, 102, 241, 0.2);
 
     color: var(--primary-color);
